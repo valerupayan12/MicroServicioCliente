@@ -10,11 +10,10 @@ import com.example.MicroCliente.model.Comuna;
 
 @Repository
 public interface ComunaRepository extends JpaRepository<Comuna, Integer> {
+
     @Query("SELECT c FROM Comuna c")
     List<Comuna> obtenerComunas();
 
     @Query("SELECT c FROM Comuna c WHERE c.id_comuna = :id_comuna")
     Comuna buscarComuna(int id_comuna);
-
-
 }
