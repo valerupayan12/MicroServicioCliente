@@ -13,31 +13,40 @@ import jakarta.transaction.Transactional;
 @Service
 @Transactional
 public class GeneroService {
+
     @Autowired
-    //llama repository
+    // LLAMA AL REPOSITORY
     private GeneroRepository generoRepository;
-    //obtener todo
-    public List<Genero> getGenero(){
+
+    // OBTENER TODOS
+    public List<Genero> getGenero() {
         return generoRepository.obtenerGenero();
     }
-    
-    //obtener por id
-    public Genero getGenero(int id_genero){
-        return generoRepository.obtenerGeneroPorId(id_genero);
+
+    // OBTENER POR ID
+    public Genero getGenero(int id_genero) {
+
+        Genero genero = generoRepository.obtenerGeneroPorId(id_genero);
+
+        if (genero != null) {
+            return genero;
+        } else {
+            return new Genero();
+        }
     }
-    
-    //eliminar x id_gemero
-    public int deleteGenero(int id_genero){
+
+    // ELIMINAR POR ID
+    public int deleteGenero(int id_genero) {
         return generoRepository.eliminarGenero(id_genero);
     }
-    //guardar genero
-    public Genero saveGenero(Genero genero){
+
+    // GUARDAR GENERO
+    public Genero saveGenero(Genero genero) {
         return generoRepository.guardarGenero(genero);
     }
-    //modificar genero 
-    public int updateGenero(Genero genero){
-        return generoRepository.modificarGenero(genero); 
 
-
+    // MODIFICAR GENERO
+    public int updateGenero(Genero genero) {
+        return generoRepository.modificarGenero(genero);
     }
 }
