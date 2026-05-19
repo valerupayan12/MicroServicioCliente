@@ -18,16 +18,22 @@ import lombok.NoArgsConstructor;
 public class Cliente{
     @Id
     private int id_cliente;
+    
     @Column(name="nombre", nullable=false)
     private String nombre;
+    
     @Column(name="email", nullable=false)
     private String email;
+    
     @Column(name="telefono", nullable=false)
     private String telefono;
+    
     @Column(name="id_comuna", nullable=false)
     private int id_comuna;
+    
     @Column(name="direccion_envio")
     private String direccion_envio;
+    
     @Column(name="id_genero", nullable=false)
     private int id_genero;
 }
