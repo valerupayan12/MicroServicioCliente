@@ -20,37 +20,47 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping("api/v1/comunas")
 public class ComunaController {
-     @Autowired
+
+    @Autowired
     private ComunaService comunaService;
 
     @GetMapping
-    public List<Comuna> listarComunas(){
+    public List<Comuna> listarComunas() {
         return comunaService.getComunas();
     }
-    
-   //agregar
-   @PostMapping
-   public Comuna agregarComuna(@Valid @RequestBody Comuna comuna){
-         return comunaService.saveComunas(comuna);
-   }
-    //buscar
+
+    // AGREGAR
+    @PostMapping
+    public Comuna agregarComuna(@Valid @RequestBody Comuna comuna) {
+
+        return comunaService.saveComuna(comuna);
+    }
+
+    // BUSCAR
     @GetMapping("{id_comuna}")
-    public Comuna buscarComuna(@PathVariable int id_comuna){
+    public Comuna buscarComuna(@PathVariable int id_comuna) {
+
         return comunaService.getComunaById(id_comuna);
     }
-    //actualizar
+
+    // ACTUALIZAR
     @PutMapping("{id_comuna}")
-    public int actualizarComuna(@PathVariable int id_comuna, @Valid @RequestBody Comuna comuna){
+    public int actualizarComuna(@PathVariable int id_comuna,
+                                @Valid @RequestBody Comuna comuna) {
+
+        comuna.setId_comuna(id_comuna);
+
         return comunaService.updateComuna(comuna);
     }
-    //eliminar
+
+    // ELIMINAR
     @DeleteMapping("{id_comuna}")
-    public String eliminarComuna(@PathVariable int id_comuna){
-        if (comunaService.deleteComuna(id_comuna)==1){
-            return "comuna eliminada correctamente";
+    public String eliminarComuna(@PathVariable int id_comuna) {
+
+        if (comunaService.deleteComuna(id_comuna) == 1) {
+            return "Comuna eliminada correctamente";
         }
+
         return "Error al eliminar la comuna";
     }
-
-
 }
