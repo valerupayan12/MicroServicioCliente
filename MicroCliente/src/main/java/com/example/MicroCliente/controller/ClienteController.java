@@ -17,40 +17,51 @@ import com.example.MicroCliente.service.ClienteService;
 
 import jakarta.validation.Valid;
 
-@SuppressWarnings("unused")
 @RestController
 @RequestMapping("api/v2/clientes")
 public class ClienteController {
-     @Autowired
+
+    @Autowired
     private ClienteService clienteService;
 
+    // LISTAR CLIENTES
     @GetMapping
-    public List<Cliente> listarClientes(){
+    public List<Cliente> listarClientes() {
         return clienteService.getClientes();
     }
-    //agregar
-    @PostMapping
-    public Cliente agregarCliente(@Valid @RequestBody Cliente cliente){
-        return clienteService.saveClientes(cliente);
 
+    // AGREGAR CLIENTE
+    @PostMapping
+    public Cliente agregarCliente(@Valid @RequestBody Cliente cliente) {
+
+        return clienteService.saveCliente(cliente);
     }
-    //buscar
+
+    // BUSCAR CLIENTE POR ID
     @GetMapping("{id_cliente}")
-    public Cliente buscraCliente(@PathVariable int id_cliente){
+    public Cliente buscarCliente(@PathVariable int id_cliente) {
+
         return clienteService.getClienteById(id_cliente);
     }
-    //actualizar
+
+    // ACTUALIZAR CLIENTE
     @PutMapping("{id_cliente}")
-    public int actualizarClinte(@PathVariable int id_cliente, @Valid @RequestBody Cliente cliente){
+    public int actualizarCliente(@PathVariable int id_cliente,
+                                 @Valid @RequestBody Cliente cliente) {
+
+        cliente.setId_cliente(id_cliente);
+
         return clienteService.updateCliente(cliente);
     }
-    //eliminar
+
+    // ELIMINAR CLIENTE
     @DeleteMapping("{id_cliente}")
-    public String elimiarCliente(@PathVariable int id_clinte){
-        if (clienteService.deleteCliente(id_clinte)==1) {
+    public String eliminarCliente(@PathVariable int id_cliente) {
+
+        if (clienteService.deleteCliente(id_cliente) == 1) {
             return "Cliente eliminado correctamente";
         }
+
         return "Error al eliminar el cliente";
     }
-
 }
