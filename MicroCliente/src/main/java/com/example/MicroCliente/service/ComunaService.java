@@ -13,34 +13,51 @@ import jakarta.transaction.Transactional;
 @Service
 @Transactional
 public class ComunaService {
-     @Autowired
-//SE LLAMA AL REPOSITORIO PARA PODER USAR SUS FUNCIONES
-    private ComunaRepository comunaRepository; 
 
-//OBTENER COMUNAS
+    @Autowired
+    // SE LLAMA AL REPOSITORIO PARA PODER USAR SUS FUNCIONES
+    private ComunaRepository comunaRepository;
+
+    // OBTENER COMUNAS
     public List<Comuna> getComunas() {
         return comunaRepository.obtenerComunas();
     }
-//OBTENER COMUNA POR ID
+
+    // OBTENER COMUNA POR ID
     public Comuna getComunaById(int id_comuna) {
-        Comuna comunas = comunaRepository.buscarComuna(id_comuna);
-        if (comunas!=null) {    
-        return comunas;
-        }else
-        return new Comuna();
+
+        Comuna comuna = comunaRepository.buscarComuna(id_comuna);
+
+        if (comuna != null) {
+            return comuna;
+        } else {
+            return new Comuna();
+        }
     }
-//CREAR comuna
-    public Comuna saveComunas(Comuna comuna) {
+
+    // CREAR COMUNA
+    public Comuna saveComuna(Comuna comuna) {
         return comunaRepository.save(comuna);
     }
-//ACTUALIZAR comuna
+
+    // ACTUALIZAR COMUNA
     public int updateComuna(Comuna comuna) {
-         comunaRepository.save(comuna);
+
+        comunaRepository.save(comuna);
+
         return 1;
     }
-//ELIMINAR comuna
+
+    // ELIMINAR COMUNA
     public int deleteComuna(int id_comuna) {
-        comunaRepository.delete(getComunaById(id_comuna));
-        return 1;
+
+        Comuna comuna = getComunaById(id_comuna);
+
+        if (comuna != null) {
+            comunaRepository.delete(comuna);
+            return 1;
+        } else {
+            return 0;
+        }
     }
 }
