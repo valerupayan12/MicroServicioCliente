@@ -1,7 +1,5 @@
 package com.example.MicroCliente.dto;
 
-import com.example.MicroCliente.model.Comuna;
-import com.example.MicroCliente.model.Genero;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -32,14 +30,16 @@ public class ClienteDTO {
         private String telefono;
 
         @NotNull(message = "La comuna es obligatoria")
-        private Comuna comuna;
+        @Min(value = 1, message = "El ID de comuna debe ser mayor a 0")
+        private Integer id_comuna;
 
         @NotBlank(message = "La dirección de envío es obligatoria")
         @Size(min = 5, max = 150, message = "La dirección debe tener entre 5 y 150 caracteres")
         private String direccion_envio;
 
         @NotNull(message = "El género es obligatorio")
-        private Genero genero;
+        @Min(value = 1, message = "El ID de género debe ser mayor a 0")
+        private Integer id_genero;
     }
 
     @Data
@@ -51,8 +51,8 @@ public class ClienteDTO {
         private String nombre;
         private String email;
         private String telefono;
-        private Comuna comuna;
+        private Integer id_comuna;
         private String direccion_envio;
-        private Genero genero;
+        private Integer id_genero;
     }
 }
