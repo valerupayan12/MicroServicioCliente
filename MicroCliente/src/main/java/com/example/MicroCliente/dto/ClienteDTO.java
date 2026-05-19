@@ -1,4 +1,4 @@
-package com.example.MicroCliente.dto;
+package com.example.MicroClienteV2.dto;
 
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
@@ -46,7 +46,6 @@ public class ClienteDTO {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class Response {
-
         private Integer id_cliente;
         private String nombre;
         private String email;
