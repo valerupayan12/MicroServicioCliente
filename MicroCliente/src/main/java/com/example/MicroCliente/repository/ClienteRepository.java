@@ -1,19 +1,17 @@
 package com.example.MicroCliente.repository;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.example.MicroCliente.model.Cliente;
+import com.example.MicroCliente.entity.Cliente;
 
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
 
-    Optional<Cliente> findById(Integer id_cliente);
-
-    boolean existsById(Integer id_cliente);
-
-    List<Cliente> findByIdGenero(Integer id_genero);
+    @Query("SELECT c FROM Cliente c WHERE c.genero.id_genero = :id_genero")
+    List<Cliente> findClientesByGeneroId(@Param("id_genero") Integer id_genero);
 }

@@ -1,4 +1,4 @@
-package com.example.MicroCliente.model;
+package com.example.MicroCliente.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Table(name = "genero")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
