@@ -1,18 +1,19 @@
-@Service
-@Transactional
+package com.example.MicroCliente.service;
+
+import com.example.MicroCliente.dto.ClienteDTO;
+import java.util.List;
+
 public interface ClienteService {
 
-    List<ClienteDTO.Response> listarTodos();
+    List<ClienteDTO.Response> listarClientes();
 
-    ClienteDTO.Response buscarPorId(int id_cliente);
+    ClienteDTO.Response obtenerClientePorId(Integer id_cliente);
 
-    ClienteDTO.Response buscarPorNombre(String nombre);
-
-    ClienteDTO.Response buscarPorGenero(int id_genero);
+    List<ClienteDTO.Response> listarClientesPorGenero(Integer id_genero);
 
     ClienteDTO.Response crearCliente(ClienteDTO.Request request);
 
-    ClienteDTO.Response actualizarCliente(int id_cliente, ClienteDTO.Request request);
+    ClienteDTO.Response actualizarCliente(Integer id_cliente, ClienteDTO.Request request);
 
-    void eliminarCliente(int id_cliente);
+    void eliminarCliente(Integer id_cliente);
 }
